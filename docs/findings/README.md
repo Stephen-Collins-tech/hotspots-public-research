@@ -15,6 +15,7 @@ eligible to appear here at all.
 | [F93](F93-osv-formula-refit.md) | OSV/CVE ground-truth formula refit | burst term weighting in `scoring.rs` | — | No |
 | [F98](F98-cold-start-anomaly-score.md) | Low-label-density cold-start screener | IsolationForest screener | — | No |
 | [F170](F170-risk-score-calibration.md) | File/module risk score calibration | `aggregates.rs` weights | [#213](https://github.com/Stephen-Collins-tech/hotspots/pull/213) | No |
+| [F194](F194-risk-score-candidate-recall.md) | Risk-score ranking as a candidate filter | `file_risk_score` ranking, `aggregates.rs` | [#213](https://github.com/Stephen-Collins-tech/hotspots/pull/213) | Yes |
 
 More promoted findings exist in the private tracker (F08, F13, F24, F27, F31, F38, F61-F63,
 F122, F136, F146, F155, F167, F168) and will be added here as they're rewritten. This index
