@@ -43,11 +43,19 @@ base rate.
 
 ## Reproducibility: Yes
 
+```bash
+scripts/reproduce.sh F194 ~/code/some-repo
+```
+
 Both the feature and the measurement are public. `file_risk_score` is live in `hotspots analyze`
 today — run it on any repo to get the same ranked file table. The recall@K comparison needs
 only a public git clone, `hotspots analyze --all-functions` output, and a fix-commit heuristic
 over commit messages (no private data, no trained model, no proprietary corpus): rank files by
 `file_risk_score`, pick a forward-looking window, label files touched by a fix-shaped commit in
-that window, and compare recall@K against K/n. Anyone can rerun this against a repo and time
-window of their choosing; the specific percentages will vary with the label window and repo
-chosen, but the comparison method is fully public.
+that window, and compare recall@K against K/n. `scripts/findings/F194.sh` runs exactly that —
+a public approximation of the fix-keyword heuristic (Conventional-Commit `fix:`/`revert` plus
+plain-English fix wording, minus the private corpus's blame-based defect-attribution machinery
+used elsewhere in this research, which this finding never needed). Anyone can rerun this against
+a repo and time window of their choosing; the specific percentages will vary with the label
+window and repo chosen — the script doesn't assert pass/fail against the numbers above, it prints
+the same recall@K-vs-random-floor comparison so you can see the ranking behave the same way.
