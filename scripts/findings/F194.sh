@@ -7,7 +7,10 @@ set -euo pipefail
 REPO_PATH="${1:?Usage: F194.sh <path-to-a-local-clone> [snapshot-sha] [window-days] [K]}"
 SNAPSHOT="${2:-$(git -C "$REPO_PATH" log --before="180 days ago" -1 --format=%H)}"
 WINDOW_DAYS="${3:-180}"
-K="${4:-20}"
+# Default K = min(20, top-decile) -- matches the updated 8-repo methodology (see the finding doc):
+# a fixed K=20 swallows most of a small repo, so K shrinks for repos under ~200 files unless
+# explicitly overridden by the 4th argument.
+K_ARG="${4:-}"
 
 if [[ -z "$SNAPSHOT" ]]; then
   echo "Could not find a commit old enough to leave a ${WINDOW_DAYS}-day forward window. Pick one explicitly." >&2
@@ -38,6 +41,12 @@ RANKED_FILES="$(hotspots analyze "$WORKTREE" --mode snapshot --format json --all
     ')"
 
 N_FILES="$(echo "$RANKED_FILES" | wc -l | tr -d ' ')"
+if [[ -z "$K_ARG" ]]; then
+  DECILE_K=$(( (N_FILES + 9) / 10 ))  # ceil(n/10)
+  K=$(( DECILE_K < 20 ? DECILE_K : 20 ))
+else
+  K="$K_ARG"
+fi
 TOP_K="$(echo "$RANKED_FILES" | head -n "$K")"
 K_USED="$(echo "$TOP_K" | wc -l | tr -d ' ')"
 
