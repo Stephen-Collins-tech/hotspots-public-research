@@ -22,8 +22,24 @@ stated rather than a fabricated reproduction script.
 ## What never moves here
 
 - `hotspots-research`'s private corpus, raw `data/`, or any script under `scripts/eval/`
-- Findings that were rejected, `n/a`, or still `pending`/`in-progress` in the promotion tracker
+- Findings that were rejected, `n/a`, or still `pending`/`in-progress` in the promotion tracker, **except** as described under "Shipped removals and negative results" below
 - Anything that would require describing an enterprise/cloud-only pipeline to explain
+
+## Shipped removals and negative results (amended 2026-11-02)
+
+A change that shipped in `hotspots` or `hotspots-content` because of a negative or null result counts as shipped, even though
+the underlying finding is negative. Examples: a field, label or command removed because the evidence did not support it; a
+formula reweighted because one term was shown to add nothing. These get a page here, so that every public explanation of
+*why* a feature exists, changed or was removed has a matching public research page the docs can link to.
+
+The conditions are the same as for any other page, plus:
+
+1. The removal or change has a merged PR (write the page after it ships, never before).
+2. The page states, in plain language, what was removed or changed, what the evidence showed, how it was measured without
+   private data, and its limits. It says plainly when the result is negative.
+3. No private corpus data, no unpublished or still-pending findings, no enterprise-only signals, no raw scripts; mark
+   Reproducible as "Partial" or "No" with the honest reason where the measurement used data nobody outside can rerun.
+4. A finding that did not lead to a shipped change (still rejected, `n/a`, `pending`) still does not move here.
 
 ## Process
 
