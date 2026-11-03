@@ -3,7 +3,7 @@
 > **Status: removed in hotspots 3.0** ([hotspots#323](https://github.com/Stephen-Collins-tech/hotspots/pull/323)).
 > The flag, `churn_percentile` and `file_risk_score_blended` are gone. The 180-day churn window fix
 > described below stays, and the 3.0 activity score carries a churn term of its own (see
-> [F160 / F241](F160-F241-activity-risk-formula.md)). See "Why it was removed" at the end.
+> [F160 / F241](activity-risk-formula.md)). See "Why it was removed" at the end.
 
 **Shipped as:** opt-in `hotspots analyze --blend-churn` (file-level re-ranking), plus a 180-day churn
 window fix | **PR:** [hotspots#295](https://github.com/Stephen-Collins-tech/hotspots/pull/295),
