@@ -14,6 +14,12 @@ languages) and held up on 4 of the 5** — 7 of 8 repos tested beat the random f
 fix-files fall outside the top-K set — but the ranking is a real, reproducible signal, not noise,
 and the result is no longer resting on just 3 repos.
 
+> **Later re-check (2026-11).** A noise-floor audit asked how much each repo's recall moves from
+> resampling alone. Only 3 of the 8 repos cleared that floor, and django, the headline repo, did not.
+> The same audit found the fix label itself is sensitive to which plausible detector defines it. So the
+> better-than-chance reading above is weaker than first stated: treat it as suggestive on a few repos,
+> not as a general guarantee. Nothing in the 3.0 docs relies on this recall figure.
+
 ## Method
 
 Eight public open-source repos across 4 languages (`django/django`, `scikit-learn/scikit-learn`,
