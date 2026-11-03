@@ -1,5 +1,10 @@
 # F206-F208-F209 — Blending `file_risk_score` with true churn (`--blend-churn`)
 
+> **Status: removed in hotspots 3.0** ([hotspots#323](https://github.com/Stephen-Collins-tech/hotspots/pull/323)).
+> The flag, `churn_percentile` and `file_risk_score_blended` are gone. The 180-day churn window fix
+> described below stays, and the 3.0 activity score carries a churn term of its own (see
+> [F160 / F241](F160-F241-activity-risk-formula.md)). See "Why it was removed" at the end.
+
 **Shipped as:** opt-in `hotspots analyze --blend-churn` (file-level re-ranking), plus a 180-day churn
 window fix | **PR:** [hotspots#295](https://github.com/Stephen-Collins-tech/hotspots/pull/295),
 released in [v2.4.0](https://github.com/Stephen-Collins-tech/hotspots/releases/tag/v2.4.0)
@@ -116,3 +121,23 @@ computes the same thing at file level), so you can also compare it to the CLI's 
 F194, the fix-label heuristic is an approximation of the one behind the table above, and results
 depend on the snapshot and window, so exact figures will differ. Do not expect it to reproduce
 echo's drop exactly; it is a way to test the blend on your own repos.
+
+## Why it was removed (hotspots 3.0)
+
+Two later checks undercut the result above, and a flag whose evidence does not hold should not ship.
+
+- **A noise-floor audit.** Each repo's recall@K was compared against how much that same number moves
+  from resampling alone. Only 1 of the 8 original repos cleared its noise floor for the blend's win, and
+  2 of the 8 sat on a degenerate metric where the floor was saturated, making the comparison
+  uninformative rather than merely underpowered.
+- **A better label.** Re-running django and scikit-learn with a more careful fix label (blame-based
+  rather than keyword-based) did not reproduce the win. The blend tied static on one and lost slightly on
+  the other, the opposite ranking from the original claim. Neither difference cleared its noise floor, so
+  the honest reading is **inconclusive**, not a reversal.
+- The same audit found that the bug-fix label used throughout this family of results is itself
+  unreliable: two independently built fix detectors barely agree, so the original recall figures depend
+  on which plausible heuristic defines "fix".
+
+A claim that does not survive a better label and a noise floor, behind an opt-in flag with a known
+regression case and no way to predict it, was removed in 3.0. The user-facing change is that
+`--blend-churn` no longer exists; plain `file_risk_score` ranking is unchanged.

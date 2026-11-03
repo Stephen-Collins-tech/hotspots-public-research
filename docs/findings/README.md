@@ -16,7 +16,12 @@ eligible to appear here at all.
 | [F98](F98-cold-start-anomaly-score.md) | Low-label-density cold-start screener | IsolationForest screener | — | No |
 | [F170](F170-risk-score-calibration.md) | File/module risk score calibration | `aggregates.rs` weights | [#213](https://github.com/Stephen-Collins-tech/hotspots/pull/213) | No |
 | [F194](F194-risk-score-candidate-recall.md) | Risk-score ranking as a candidate filter | `file_risk_score` ranking, `aggregates.rs` | [#213](https://github.com/Stephen-Collins-tech/hotspots/pull/213) | Yes |
-| [F206-F208-F209](F206-F208-F209-churn-blend.md) | Blending `file_risk_score` with true churn | opt-in `hotspots analyze --blend-churn`, 180-day churn window | [#295](https://github.com/Stephen-Collins-tech/hotspots/pull/295) | Yes |
+| [F206-F208-F209](F206-F208-F209-churn-blend.md) | Blending `file_risk_score` with true churn | opt-in `hotspots analyze --blend-churn` (**removed in 3.0**), 180-day churn window | [#295](https://github.com/Stephen-Collins-tech/hotspots/pull/295), [#323](https://github.com/Stephen-Collins-tech/hotspots/pull/323) | Yes (for the original result; the later re-check is Partial) |
+| [F160 / F241](F160-F241-activity-risk-formula.md) | What the activity risk score is built from | `activity_risk` formula version 3 | [#323](https://github.com/Stephen-Collins-tech/hotspots/pull/323) | Partial |
+| [Quadrant → tier](quadrant-replaced-by-activity-tier.md) | Quadrant replaced by an activity tier | `tier` in snapshot schema 6 | [#323](https://github.com/Stephen-Collins-tech/hotspots/pull/323) | Partial |
+| [F159 / F161](F159-F161-pr-risk-score-removed.md) | PR risk score removed; changed lines in touched functions instead | `fn_changed_lines` in `hotspots diff` | [#323](https://github.com/Stephen-Collins-tech/hotspots/pull/323) | Partial |
+| [F105](F105-rapid-growth-removed.md) | `rapid-growth` policy removed (redundant) | policy engine | [#323](https://github.com/Stephen-Collins-tech/hotspots/pull/323) | Partial |
+| [F183](F183-ownership-risk-bands.md) | `ownership_risk` and its low/medium/high band | `hotspots coordinate` | [#323](https://github.com/Stephen-Collins-tech/hotspots/pull/323) | Partial |
 
 More promoted findings exist in the private tracker (F08, F13, F24, F27, F31, F38, F61-F63,
 F122, F136, F146, F155, F167, F168) and will be added here as they're rewritten. This index
