@@ -24,8 +24,12 @@ eligible to appear here at all.
 | [F183](ownership-risk-bands.md) | `ownership_risk` and its low/medium/high band | `hotspots coordinate` | [#323](https://github.com/Stephen-Collins-tech/hotspots/pull/323) | Partial |
 | [F244](F244-cpp-score-validation.md) | Does the activity risk score work on C++? | C++ support; score checked and caveat removed | [#335](https://github.com/Stephen-Collins-tech/hotspots/pull/335), [#340](https://github.com/Stephen-Collins-tech/hotspots/pull/340) | Partial |
 | [F257-F262](F257-F262-top-decile-flag.md) | `file_risk_score`'s top decile within a diff is a real, cutoff-robust, out-of-sample-replicated signal | `file_risk_top_decile` flag on `hotspots diff` | [#353](https://github.com/Stephen-Collins-tech/hotspots/pull/353) | Yes |
+| [F167-F168](F167-F168-live-score-honesty.md) | Two terms removed from the live score: one dead weight, one hidden ratchet bug | `depth_score` zeroed in `scoring.rs`; `convention_bug_fix_count` dropped from the trained ranker | — (commits `be7d5f2`, `43dd62c` on `main`) | Partial |
+| [F146-F155](F146-F155-ownership-concentration.md) | Ownership concentration directly predicts coordination friction; `concentrated` ships, `diffuse` is blocked on an identity bug | `knowledge_mode` field + `serialize`→`parallel_safe` downgrade, `hotspots coordinate` | [#195](https://github.com/Stephen-Collins-tech/hotspots/pull/195), [#200](https://github.com/Stephen-Collins-tech/hotspots/pull/200) | Yes |
+| [F08-F13-F24-F27-F38](F08-F13-F24-F27-F38-ranker-reliability.md) | Making the trained ranker fail safely instead of failing silently | `hotspots train --screen`/`--eval`; suppression gate in `hotspots analyze`; directed-coupling reliability screener | [#91](https://github.com/Stephen-Collins-tech/hotspots/pull/91), [#79](https://github.com/Stephen-Collins-tech/hotspots/pull/79), [#85](https://github.com/Stephen-Collins-tech/hotspots/pull/85) | Partial |
+| [F61-F62-F63](F61-F62-F63-cold-start.md) | Picking the right model class, and a fallback ranker, for low-history repos | `hotspots train` model-class selection; Gini-gated cold-start ranking | [#114](https://github.com/Stephen-Collins-tech/hotspots/pull/114), [#123](https://github.com/Stephen-Collins-tech/hotspots/pull/123) | Partial |
 
-More promoted findings exist in the private tracker (F08, F13, F24, F27, F31, F38, F61-F63,
-F122, F136, F146, F155, F167, F168) and will be added here as they're rewritten. This index
-only lists findings that have been written up so far — absence from this table doesn't mean
-a finding was rejected, just that it hasn't been promoted to this public repo yet.
+More promoted findings exist in the private tracker (F31, F122) and will be added here as
+they're rewritten. This index only lists findings that have been written up so far — absence
+from this table doesn't mean a finding was rejected, just that it hasn't been promoted to
+this public repo yet.
