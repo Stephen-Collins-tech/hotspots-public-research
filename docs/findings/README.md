@@ -23,6 +23,7 @@ eligible to appear here at all.
 | [F105](rapid-growth-removed.md) | `rapid-growth` policy removed (redundant) | policy engine | [#323](https://github.com/Stephen-Collins-tech/hotspots/pull/323) | Partial |
 | [F183](ownership-risk-bands.md) | `ownership_risk` and its low/medium/high band | `hotspots coordinate` | [#323](https://github.com/Stephen-Collins-tech/hotspots/pull/323) | Partial |
 | [F244](F244-cpp-score-validation.md) | Does the activity risk score work on C++? | C++ support; score checked and caveat removed | [#335](https://github.com/Stephen-Collins-tech/hotspots/pull/335), [#340](https://github.com/Stephen-Collins-tech/hotspots/pull/340) | Partial |
+| [F257-F262](F257-F262-top-decile-flag.md) | `file_risk_score`'s top decile within a diff is a real, cutoff-robust, out-of-sample-replicated signal | `file_risk_top_decile` flag on `hotspots diff` | [#353](https://github.com/Stephen-Collins-tech/hotspots/pull/353) | Yes |
 
 More promoted findings exist in the private tracker (F08, F13, F24, F27, F31, F38, F61-F63,
 F122, F136, F146, F155, F167, F168) and will be added here as they're rewritten. This index
